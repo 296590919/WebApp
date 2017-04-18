@@ -1,0 +1,14 @@
+﻿@Scripts.Render("~/Scripts/home.js")
+<div class="span10" ms-controller="indexArticle">
+    {{vm.$articleList}}
+    {{vm.$asdf}}
+    <div ms-if="vm.isSuccess">
+        <div class="thumbnail" style="margin-top: 10px; padding: 10px;" ms-for="el in vm.$model.$articleList">
+            <a style="margin-top: 5px;" href="/MyBlog/Article?articleID={{el.articleID}}">
+                <h2>{{el.articleTitle}}</h2>
+            </a>
+            <p>{{el.articleAbstract}}....</p>
+        </div>
+    </div>
+    
+</div>

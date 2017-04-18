@@ -1,0 +1,117 @@
+﻿@Scripts.Render("~/Scripts/menu.js")
+@model Common.Result<List<RA.MyBlog.DTO.MenuDTO>>
+<ul class="nav nav-list pinned">
+    <li><a id="optionProject" href="#">分组管理</a></li>
+    <li></li>
+    <li onclick=changeStatus(-1) class="categoryItem"><a href="#">最新</a></li>
+    <li class="divider"></li>
+    <li class="divider"></li>
+    @{
+        if (Model.IsSuccess)
+        {
+            foreach (var i in Model.ReturnValue)
+            {
+                <li class="nav-header">
+                    @i.projectName
+                </li>
+                foreach (var k in i.categoryList)
+                {
+                    <li tag="@k.categoryID" class="categoryItem" style="margin-top:5px;" onclick="changeStatus(@k.categoryID)">
+                        @k.categoryName
+                    </li>
+                }
+                <li class="divider"></li>
+            }
+            <li><a href="/MyBlog/Category?CategoryID=-999">未分类</a></li>
+        }
+    }
+</ul>
+<!--栏目-->
+<!--栏目管理对话框-->
+<div id="modal-container-704233" style="width:1000px;left:40%;" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>管理</h3>
+    </div>
+    <div class="modal-body-menu">
+        <div class="control-group" style="margin:10px;">
+            <div class="controls content">
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-addProject">添加</button>
+        <button class="btn btn-success btn-option-exit" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>
+<!---->
+<!--添加栏目-->
+<div id="modal-container-702348" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>栏目管理</h3>
+    </div>
+    <div class="modal-body">
+        <label>栏目</label><input id="inputCategory" placeholder="栏目" type="text" />
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger btn-addCategory-ok" data-dismiss="modal" aria-hidden="true">确定</button>
+        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>
+<!--删除栏目-->
+<div id="modal-container-700001" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>栏目管理</h3>
+    </div>
+    <div class="modal-body">
+        <p>确认要删除吗？</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger btn-deleteCategory-ok" data-dismiss="modal" aria-hidden="true">确定</button>
+        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>
+<!--添加项目-->
+<div id="modal-container-702754" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>项目管理</h3>
+    </div>
+    <div class="modal-body">
+        <label>项目</label><input id="inputProject" placeholder="栏目" type="text" />
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger btn-addProject-ok" data-dismiss="modal" aria-hidden="true">确定</button>
+        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>
+<!--删除项目-->
+<div id="modal-container-743534" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>项目管理</h3>
+    </div>
+    <div class="modal-body">
+        <p>确认要删除吗？</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger btn-deleteProject-ok" data-dismiss="modal" aria-hidden="true">确定</button>
+        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>
+<!--alert对话框-->
+<div id="modal-container-702342" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>信息</h3>
+    </div>
+    <div class="modal-body">
+        <p id="modal-body-alert-text"></p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success btn-done" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>

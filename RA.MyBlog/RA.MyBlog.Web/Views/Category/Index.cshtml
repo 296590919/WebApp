@@ -1,0 +1,91 @@
+﻿@using Framework
+@using MyBlog.Web
+
+@model Common.Result<RA.MyBlog.DTO.ArticleListDTO>
+
+@Scripts.Render("~/Scripts/Category.js")
+<div class="span10" id="body1">
+    <ul class="breadcrumb" style="padding-top: 3px;">
+        <li>@Html.ActionLink("myBlog", "Index", "Home", new { area = "MyBlog" }, null)<span class="divider">/</span></li>
+        <li class="active">@Model.ReturnValue.categoryName<span class="divider">/</span></li>
+        <li>
+            <a href="/MyBlog/Article/NewArticle?categoryID=@Model.ReturnValue.categoryID">
+                <img src="/Areas/MyBlog/Image/add.png" style="height: 17px; margin-bottom: 3px;">添加文章
+            </a>
+        </li>
+    </ul>
+    @{
+        if (Model.IsSuccess)
+        {
+            if (Model.ReturnValue.ArticleList != null)
+            {
+                <table class="table">
+                    @{
+                        foreach (var item in Model.ReturnValue.ArticleList)
+                        {
+                            <tr tag="@item.articleID">
+                                <td style="vertical-align: baseline; width: 300px"><a href="/MyBlog/Article?articleID=@item.articleID">@item.articleTitle</a></td>
+                                <td style="vertical-align: baseline">@item.articleCopyright</td>
+                                <td style="vertical-align: baseline">@item.articleDate</td>
+                                <td style="width: 80px;">
+                                    <button class="btn btn-link btn-delete" tag="@item.articleID" style="height: 20px; padding: 0px;">
+
+                                        <img src="/Areas/MyBlog/Image/delete.png" style="height: 20px;" />
+                                    </button>
+                                    <a href="/Article/Edit?articleID=@item.articleID">
+                                        <button class="btn btn-link" id="edit" tag="@item.articleID" style="height: 20px; padding: 0px;">
+                                            <img src="/Areas/MyBlog/Image/edit.png" style="height: 20px" />
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+                        }
+                        else
+                        {
+                            <p>没有文章</p>
+                        }
+
+                        <div id="modal-container-701036" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3>删除文章</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p id="modal-body-text"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">关闭</button>
+                            </div>
+                        </div>
+
+                        <div id="modal-container-700000" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3>删除文章</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>确认要删除吗？</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger btn-ok" data-dismiss="modal" aria-hidden="true">确定</button>
+                                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">关闭</button>
+                            </div>
+                        </div>
+                        }
+                        else
+                        {
+                            <script>
+                                $(document)
+                                    .ready(function () {
+                                        $("#modal-body-errMsg").html("@Model.ReturnMessage");
+                                        $("#modal-container-000000").modal("show");
+                                        window.location.href = "/MyBlog/Home/Index";
+                                    });
+                            </script>
+                        }
+    }
+</div>
+<div id="body2"></div>

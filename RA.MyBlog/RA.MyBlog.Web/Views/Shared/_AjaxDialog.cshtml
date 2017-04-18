@@ -1,0 +1,35 @@
+﻿@model int
+@{
+    switch (Model)
+    {
+        case 1: //提示消息对话框
+            <div id="modal-container-message" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="modal-message-title"></h3>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-message-body"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success message-btn-ok" data-dismiss="modal" aria-hidden="true">确定</button>
+                </div>
+            </div>
+            break;
+        case 2://确认对话框
+            <div id="modal-container-confirm" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="modal-confirm-title"></h3>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-confirm-body"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger confirm-btn-ok" data-dismiss="modal" aria-hidden="true">确定</button>
+                    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">关闭</button>
+                </div>
+            </div>
+            break;
+    }
+}

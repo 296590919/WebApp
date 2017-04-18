@@ -1,0 +1,39 @@
+﻿@model Common.Result<RA.MyBlog.DTO.ArticleDTO>
+
+<div class="span10">
+    @{
+        if (Model.IsSuccess)
+        {
+            @Styles.Render("~/CSS/article.css")
+            @Scripts.Render("~/Scripts/Articles.js")
+            <style>
+                .container::before, .container::after {
+                    content: none;
+                    display: table;
+                    line-height: 0;
+                }
+            </style>
+            <ul class="breadcrumb" style="padding-top:3px;">
+                <li>@Html.ActionLink("myBlog", "Index", "Home", new { area = "MyBlog" }, null)<span class="divider">/</span></li>
+                <li><a href="/MyBlog/Category?categoryID=@Model.ReturnValue.categoryID">@Model.ReturnValue.categoryName</a> <span class="divider">/</span></li>
+                <li class="active">@Model.ReturnValue.articleTitle<span class="divider">/</span></li>
+            </ul>
+            <h3>@Model.ReturnValue.articleTitle</h3>
+            <p><strong>来源：@Model.ReturnValue.articleCopyright&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：@Model.ReturnValue.articleDate.ToString("yyyy-MM-dd HH:mm")</strong></p>
+            <div class="divider"></div>
+            <div>
+                @Html.Raw(Model.ReturnValue.articleContain)
+            </div>
+        }
+        else
+        {
+            <script>
+            $(document).ready(function () {
+                $("#modal-body-errMsg").html("@Model.ReturnMessage");
+                $('#modal-container-000000').modal('show');
+            });
+            </script>
+        }
+    }
+    
+</div>

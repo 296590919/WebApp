@@ -1,0 +1,5 @@
+C:\Users\WY\Desktop\Git\RA.Cooperation\RA.Cooperation.DTO\bin\Debug\RA.Cooperation.DTO.dll
+C:\Users\WY\Desktop\Git\RA.Cooperation\RA.Cooperation.DTO\bin\Debug\RA.Cooperation.DTO.pdb
+C:\Users\WY\Desktop\Git\RA.Cooperation\RA.Cooperation.DTO\obj\Debug\RA.Cooperation.DTO.csprojResolveAssemblyReference.cache
+C:\Users\WY\Desktop\Git\RA.Cooperation\RA.Cooperation.DTO\obj\Debug\RA.Cooperation.DTO.dll
+C:\Users\WY\Desktop\Git\RA.Cooperation\RA.Cooperation.DTO\obj\Debug\RA.Cooperation.DTO.pdb

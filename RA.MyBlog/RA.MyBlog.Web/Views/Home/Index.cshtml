@@ -1,0 +1,21 @@
+﻿@model Common.Result<List<RA.MyBlog.DTO.ArticleDTO>>
+
+
+<div class="span10">
+    @{
+        if (Model.IsSuccess)
+        {
+            foreach (var i in Model.ReturnValue)
+            {
+                <div class="thumbnail" style="margin-top:10px;padding:10px;">
+                    <a style="margin-top:5px;" href="/MyBlog/Article?articleID=@i.articleID"><h2>@i.articleTitle</h2></a>
+                    <p>@i.articleAbstract...</p>
+                </div>
+            }
+        }
+        else
+        {
+            <p>@Model.ReturnMessage</p>
+        }
+    }
+</div>

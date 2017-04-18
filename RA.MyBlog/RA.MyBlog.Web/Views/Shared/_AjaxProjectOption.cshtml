@@ -1,0 +1,36 @@
+﻿@using Framework
+@using MyBlog.Web
+@model Common.Result<List<RA.MyBlog.DTO.MenuDTO>>
+
+<ul class="thumbnails">
+    <!---->
+    @{
+        foreach (var i in Model.ReturnValue)
+        {
+            <li class="span3">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <button tag="@i.projectID" type="button" class="projectDelete close">×</button>
+                        <h4>@i.projectName<a href="#" tag="@i.projectID" class="btn-addCategory" style="margin-left:10px;font-size:12px;">添加</a></h4>
+
+                        <ul class="nav nav-list">
+                            <li class="divider"><br></li>
+                            @{
+                                foreach (var k in i.categoryList)
+                                {
+                                    <li tag="@k.categoryID" class="categoryItem" style="margin-top:5px;"> 
+                                        <a href="#">  
+                                            @k.categoryName  
+                                            <img tag="@k.categoryID" class="btn-deleteCategory" style="float:right;height:20px;visibility:collapse;margin-bottom:5px;" src="/Areas/MyBlog/Image/remove.png">
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        }
+    }
+
+</ul><!---->
